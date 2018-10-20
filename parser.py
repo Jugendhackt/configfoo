@@ -16,7 +16,7 @@ def write(d, file):
     f.write("!_TAG_PROGRAM_AUTHOR\tConfig foo Team\t//\n")
     f.write("!_TAG_PROGRAM_NAME\tconfig foo\n")
     for x in d:
-        f.write(x[2] + "\t" + file + "\t" + x[2] + "\n") # "\ts\ttitle:" + file + "\n")
+        f.write(x[2] + "\t" + file + "\t/" + x[3] + "/\n") # "\ts\ttitle:" + file + "\n")
 
 
 def main():
@@ -68,15 +68,16 @@ def main():
                         print("larger than 3??")
                         continue
                     for x in options:
-                        list.append((counter - 1, "o", x.strip().strip("=")))
+                        list.append((counter - 1, "o", x.strip().strip("="), ""))
                     previosText = ""
                     continue
                 insert_text = previosText.strip().split(" ")[0]
-                list.append((counter - 1, "o", insert_text.strip("=")))
+                comment_text = previosText.strip()
+                list.append((counter - 1, "o", insert_text.strip("="), comment_text))
                 optionSection = True
                 previosText = ""
 
-    write(list, "test")
+    write(list, "manFile")
 
 
 
