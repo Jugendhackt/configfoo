@@ -7,6 +7,17 @@ def countIdent(s):
             return ident
     return ident
 
+def write(d, file):
+    f = open("tags", "w")
+    f.write("!_TAG_FILE_FORMAT\t2\t/extended format; --format=1 will not append ;\" to lines/\n")
+    f.write("!_TAG_FILE_SORTED\t1\t/0=unsorted, 1=sorted, 2=foldcase/\n")
+    f.write("!_TAG_OUTPUT_MODE\tu-ctags /u-ctags or e-ctags/\n")
+    f.write("!_TAG_PROGRAM_AUTHOR\tConfig foo Team\t//\n")
+    f.write("!_TAG_PROGRAM_NAME\tconfig foo\n")
+    for x in d:
+        f.write(x[2] + "\t" + file + "\t/^.SH \"" + x[2] + "\"$/;\"\ts\ttitle:" + file + "\n")
+
+
 def main():
     previos = ""
     previosText = ""
@@ -64,7 +75,7 @@ def main():
                 optionSection = True
                 previosText = ""
 
-    print(list)
+    write(list, "test")
 
 
 
