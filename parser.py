@@ -8,6 +8,12 @@ def countIdent(s):
     return ident
 
 def main():
+    previos = ""
+    previosText = ""
+    optionSection = False
+    list = []
+    list.append((0, "p", ""))
+    listCounter = 0
     counter = 0
     default_indent = 0
     last_key_word = 0
@@ -17,11 +23,40 @@ def main():
             if default_indent == 0:
                 if countIdent(line) == 0 and line.startswith("NAME"):
                     last_key_word = 1
-                    print("NAME")
                 if last_key_word == 1:
-                    print(line)
                     default_indent = countIdent(line)
-    print(default_indent)
+                print("test")
+                continue
+
+            if line in ('\n', '\r\n'):
+                continue
+            if countIdent(line) == 0:
+                print("section")
+                optionSection = False
+                continue
+            indent = (countIdent(line) / default_indent)
+            if indent < 1:
+                print("half indent")
+                continue
+            if indent == 1:
+                previosText = line.strip()
+#                if optionSection == True:
+#                    if list[-1][2].startswith(line.strip()):
+#                        print("double")
+#                    list.append((counter, "o", line.strip()))
+                continue
+            if indent > 1:
+                if previosText == "":
+                    continue
+                if list[-1][2].startswith(line.strip()):
+                    print("double")
+                list.append((counter - 1, "o", previosText))
+                optionSection = True
+                previosText = ""
+
+    print(list)
+
+
 
 if __name__ == "__main__":
     main()
