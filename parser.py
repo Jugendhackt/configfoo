@@ -12,7 +12,7 @@ def main():
     previosText = ""
     optionSection = False
     list = []
-    list.append((0, "p", ""))
+#    list.append((0, "p", ""))
     listCounter = 0
     counter = 0
     default_indent = 0
@@ -48,9 +48,19 @@ def main():
             if indent > 1:
                 if previosText == "":
                     continue
-                if list[-1][2].startswith(line.strip()):
-                    print("double")
-                list.append((counter - 1, "o", previosText))
+#                if list[-1][2].startswith(line.strip()):
+#                    print("double")
+                if '=,' in previosText:
+                    options = previosText.split(",")
+                    if len(options) > 3:
+                        print("larger than 3??")
+                        continue
+                    for x in options:
+                        list.append((counter - 1, "o", x.strip().strip("=")))
+                    previosText = ""
+                    continue
+                insert_text = previosText.strip().split(" ")[0]
+                list.append((counter - 1, "o", insert_text.strip("=")))
                 optionSection = True
                 previosText = ""
 
