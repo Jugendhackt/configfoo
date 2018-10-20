@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 def countIdent(s):
     ident = 0
     for c in s:
