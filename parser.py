@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+
+import sys
+import os
+
+configFooPath = "/tmp/configfoo/"
+
 def countIdent(s):
     ident = 0
     for c in s:
@@ -7,6 +13,10 @@ def countIdent(s):
         else:
             return ident
     return ident
+
+def genManFile(f):
+    os.mkdir(configFooPath)
+    os.system("man " + f + " > " + configFooPath + f)
 
 def write(d, file):
     f = open("tags", "w")
@@ -20,6 +30,11 @@ def write(d, file):
 
 
 def main():
+    if len(sys.argv) != 2:
+        print("not enough arguments")
+        sys.exit(1)
+    manFile = sys.argv[1]
+    genManFile(manFile)
     previos = ""
     previosText = ""
     optionSection = False
@@ -29,7 +44,7 @@ def main():
     counter = 0
     default_indent = 0
     last_key_word = 0
-    with open("manFile") as f:
+    with open(configFooPath + manFile) as f:
         for line in f:
             counter += 1
             if default_indent == 0:
@@ -77,7 +92,7 @@ def main():
                 optionSection = True
                 previosText = ""
 
-    write(list, "manFile")
+    write(list, configFooPath + manFile)
 
 
 
