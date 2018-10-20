@@ -16,7 +16,7 @@ def write(d, file):
     f.write("!_TAG_PROGRAM_AUTHOR\tConfig foo Team\t//\n")
     f.write("!_TAG_PROGRAM_NAME\tconfig foo\n")
     for x in d:
-        f.write(x[2] + "\t" + file + "\t/^.SH \"" + x[2] + "\"$/;\"\ts\ttitle:" + file + "\n")
+        f.write(x[2] + "\t" + file + "\t" + x[2] + "\n") # "\ts\ttitle:" + file + "\n")
 
 
 def main():
