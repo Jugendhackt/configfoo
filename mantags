@@ -3,7 +3,7 @@
 import sys
 import os
 
-configFooPath = "/tmp/configfoo/"
+configFooPath = ".mantags"
 
 def countIdent(s):
     ident = 0
@@ -15,8 +15,11 @@ def countIdent(s):
     return ident
 
 def genManFile(f):
-    os.mkdir(configFooPath)
-    os.system("man " + f + " > " + configFooPath + f)
+    try:
+        os.mkdir(configFooPath)
+    except FileExistsError:
+        pass
+    os.system("man " + f + " > " + configFooPath + "/" + f)
 
 def write(d, file):
     f = open("tags", "w")
@@ -44,7 +47,7 @@ def main():
     counter = 0
     default_indent = 0
     last_key_word = 0
-    with open(configFooPath + manFile) as f:
+    with open(configFooPath + "/" + manFile) as f:
         for line in f:
             counter += 1
             if default_indent == 0:
@@ -52,7 +55,6 @@ def main():
                     last_key_word = 1
                 if last_key_word == 1:
                     default_indent = countIdent(line)
-                print("test")
                 continue
 
             if line in ('\n', '\r\n'):
@@ -92,7 +94,7 @@ def main():
                 optionSection = True
                 previosText = ""
 
-    write(list, configFooPath + manFile)
+    write(list, configFooPath + "/" + manFile)
 
 
 
