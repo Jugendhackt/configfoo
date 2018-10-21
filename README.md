@@ -12,9 +12,9 @@ additionally: configfoo is developed only for parsing of manpages focusing
 on configuration files (like the ones about neomuttrc, coredump.conf and dhcpcd.conf).
 
 ## usage
-- Export the manpage with man topic > manFile.
-- Run ./parser to create the ctags-file.
-- Start vim or your favourite text editor.
+- Copy the mantags script into a dir inside your PATH.
+- Go inside the root dir of your project and run **mantags manentry**.
+- Start vim and use tag completion.
 
 ## questions?
 please reach out to us if you have any questions concerning this project.
