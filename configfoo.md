@@ -1,4 +1,4 @@
-# config foo
+# configfoo
 
 Finn, Joshua und Max
 
@@ -10,13 +10,6 @@ Finn, Joshua und Max
 
 * Nie wieder mehrere Tage in Manual Pages verbringen 
 ---
-# Projekt
-
-* Manual Pages mit ctags indizieren
-
-* Vim Extension mit automatische Vervollständigung und Erklärungssuche in der man page schreiben
-
----
 
 # Manual Pages
 
@@ -24,7 +17,14 @@ Finn, Joshua und Max
 
 * Anleitung in der Konsole
 
-* source file in eigenem man page format
+* Source File in eigenem man page format
+
+---
+# Projekt
+
+* Manual Pages mit ctags indizieren
+
+* Vim Extension mit automatische Vervollständigung und Erklärungssuche in der man page schreiben
 
 ---
 
